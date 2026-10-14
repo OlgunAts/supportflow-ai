@@ -1,0 +1,41 @@
+const tickets = [
+  {id:1,initials:"AM",avatar:"coral",name:"Alex Morgan",company:"Northstar Labs · Pro plan",subject:"Billing mismatch after plan change",preview:"The invoice total looks different...",time:"3m",fullTime:"Today, 09:42",message:"Hi team — we moved from the monthly Pro plan to annual billing yesterday, but the new invoice seems to include both charges. Could you check whether we were billed twice? We need to close our books this afternoon.",intent:"Billing review",urgency:"High",sentiment:"Concerned",summary:"Potential duplicate charge after a plan change. Time-sensitive because the customer is closing their books today.",plan:"Pro · Annual",age:"14 months",health:"Healthy",sources:["Billing changes · § 3.2","Duplicate charge playbook"],reply:"Hi Alex,\n\nThanks for flagging this. I understand why the two line items look like a duplicate charge. I’ve outlined the account details for a billing specialist to verify before we confirm anything.\n\nWe’ll review the plan-change adjustment and follow up with a clear breakdown. If a duplicate charge is confirmed, we’ll explain the correction and next steps.\n\nBest,\nSupportFlow Team"},
+  {id:2,initials:"SK",avatar:"violet",name:"Sam Kim",company:"Orbit Studio · Business",subject:"SSO configuration question",preview:"Where should our callback URL...",time:"11m",fullTime:"Today, 09:34",message:"We’re enabling SSO for our workspace. The setup guide mentions a callback URL, but I can’t find the exact value for our region. Can you point me to the right configuration?",intent:"Technical setup",urgency:"Medium",sentiment:"Neutral",summary:"Customer needs a region-specific SSO callback URL before completing setup.",plan:"Business",age:"8 months",health:"Healthy",sources:["SSO setup guide · § 1.4","Regional endpoints"],reply:"Hi Sam,\n\nHappy to help with the SSO setup. The callback URL depends on the region assigned to your workspace. Please open Workspace Settings → Security → SSO, where the correct regional callback URL is displayed for copying.\n\nBefore saving, compare it with the regional endpoints guide linked in your admin panel. If they don’t match, reply here and we’ll help verify the workspace region.\n\nBest,\nSupportFlow Team"},
+  {id:3,initials:"JL",avatar:"green",name:"Jordan Lee",company:"Fieldnote · Starter",subject:"Feature availability",preview:"Does the Starter plan include...",time:"24m",fullTime:"Today, 09:21",message:"Does the Starter plan include custom ticket views, or would we need to upgrade? We’re a small team and mostly want to separate onboarding questions from bug reports.",intent:"Plan question",urgency:"Low",sentiment:"Curious",summary:"Small team is comparing plan capabilities for organizing onboarding and bug-report conversations.",plan:"Starter",age:"3 months",health:"Healthy",sources:["Plan comparison","Custom views overview"],reply:"Hi Jordan,\n\nCustom ticket views are not included in the illustrative Starter plan for this demo. A practical first step is to use the built-in topic filters for onboarding and bug reports, then evaluate custom views if your workflow becomes more complex.\n\nI can also share a short comparison of the available organization options.\n\nBest,\nSupportFlow Team"},
+  {id:4,initials:"PD",avatar:"coral",name:"Priya Desai",company:"GrainWorks · Pro",subject:"Data export timing",preview:"Our export is still processing...",time:"38m",fullTime:"Today, 09:07",message:"Our workspace export has been processing for about an hour. Is that expected for a larger account, and will I receive an email when it is ready?",intent:"Export support",urgency:"Medium",sentiment:"Patient",summary:"Customer is checking expected processing and notification behavior for a large workspace export.",plan:"Pro",age:"19 months",health:"Healthy",sources:["Data exports · § 2","Notification settings"],reply:"Hi Priya,\n\nFor larger workspaces, exports can take longer to prepare. You can safely leave the page while it processes. When the file is ready, the account owner will receive a notification at the address shown in Workspace Settings.\n\nIf the status has not changed after the documented processing window, reply here and we’ll help investigate.\n\nBest,\nSupportFlow Team"},
+  {id:5,initials:"MR",avatar:"violet",name:"Mateo Ruiz",company:"Fable Labs · Business",subject:"Webhook retry behavior",preview:"Do failed webhooks retry...",time:"1h",fullTime:"Today, 08:45",message:"Do failed webhooks retry automatically? We had a short outage and want to understand whether we need to replay the events manually.",intent:"Developer question",urgency:"Medium",sentiment:"Neutral",summary:"Developer needs to know whether missed webhook deliveries are retried after an endpoint outage.",plan:"Business",age:"11 months",health:"Watch",sources:["Webhook delivery · § 4","Event logs"],reply:"Hi Mateo,\n\nThe illustrative webhook flow in this demo includes automatic retries with increasing intervals. You can inspect delivery attempts in the event log before deciding whether a manual replay is needed.\n\nFor a production integration, we would confirm the exact retry window and replay behavior from your configured provider.\n\nBest,\nSupportFlow Team"}
+];
+
+const list=document.querySelector("#conversation-list");
+let activeTicket=tickets[0];
+
+function renderList(){
+  list.innerHTML=tickets.map(t=>`<button class="conversation-item ${t.id===activeTicket.id?"active":""}" data-id="${t.id}" type="button"><span class="avatar ${t.avatar}">${t.initials}</span><div><strong>${t.name}</strong><small>${t.preview}</small></div><time>${t.time}</time></button>`).join("");
+  list.querySelectorAll("button").forEach(button=>button.addEventListener("click",()=>selectTicket(Number(button.dataset.id))));
+}
+
+function setText(selector,value){document.querySelector(selector).textContent=value}
+function selectTicket(id){
+  activeTicket=tickets.find(t=>t.id===id)||tickets[0];
+  const avatar=document.querySelector("#customer-avatar");
+  avatar.className=`avatar ${activeTicket.avatar}`;
+  avatar.textContent=activeTicket.initials;
+  setText("#customer-name",activeTicket.name);setText("#customer-company",activeTicket.company);setText("#ticket-subject",activeTicket.subject);setText("#ticket-time",activeTicket.fullTime);setText("#ticket-message",activeTicket.message);setText("#analysis-intent",activeTicket.intent);setText("#analysis-urgency",activeTicket.urgency);setText("#analysis-sentiment",activeTicket.sentiment);setText("#analysis-summary",activeTicket.summary);setText("#context-plan",activeTicket.plan);setText("#context-age",activeTicket.age);setText("#context-health",activeTicket.health);
+  document.querySelector("#reply-text").value=activeTicket.reply;
+  document.querySelector("#source-list").innerHTML=activeTicket.sources.map((source,index)=>`<button type="button"><span>Source ${index+1}</span><b>${source}</b></button>`).join("");
+  setText("#action-feedback","");renderList();
+}
+
+document.querySelector("#regenerate-button").addEventListener("click",()=>{
+  const textarea=document.querySelector("#reply-text");
+  const button=document.querySelector("#regenerate-button");
+  button.disabled=true;button.textContent="✦ Generating sample…";setText("#action-feedback","");
+  window.setTimeout(()=>{textarea.value=activeTicket.reply.replace("Hi ","Hello ");button.disabled=false;button.textContent="✦ Regenerate demo";setText("#action-feedback","A deterministic sample variation was generated locally—no AI request was made.");},650);
+});
+
+document.querySelector("#approve-button").addEventListener("click",()=>{setText("#action-feedback","Draft marked approved in this browser-only demo. Nothing was sent.");document.querySelector("#ticket-status").textContent="Reviewed";});
+document.querySelectorAll("[data-scroll-demo]").forEach(button=>button.addEventListener("click",()=>document.querySelector("#demo").scrollIntoView({behavior:"smooth"})));
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add("visible")}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(element=>observer.observe(element));
+document.querySelector("#year").textContent=new Date().getFullYear();
+selectTicket(1);
