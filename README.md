@@ -14,6 +14,9 @@ This repository is designed for GitHub Pages and uses plain HTML, CSS, and JavaS
 - Editable sample reply drafts
 - Browser-local “regenerate” and “approve” interactions
 - Accessible navigation, reduced-motion support, and mobile layouts
+- A clearly labeled server-side Claude integration architecture
+- A measurable 90-day design-partner pilot plan
+- A public pilot application workflow through GitHub Issues
 
 ## Demo and AI disclosure
 
@@ -30,6 +33,10 @@ A production implementation would add:
 3. Retrieval from approved sources with visible citations.
 4. Human review gates, audit logs, and configurable retention.
 5. Evaluation, monitoring, redaction, and rate limiting.
+
+## Validation plan
+
+The public site includes a 90-day validation roadmap. Its design-partner counts and ticket volumes are goals, not claims of existing traction. Pilot applicants can open a structured GitHub issue without sharing confidential or customer data.
 
 ## License
 

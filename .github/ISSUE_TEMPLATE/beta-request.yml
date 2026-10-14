@@ -1,0 +1,57 @@
+name: Design partner application
+description: Apply to help shape the SupportFlow AI pilot. Do not include confidential or customer data.
+title: "Design partner: "
+labels:
+  - pilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in the SupportFlow AI design-partner pilot.
+
+        This is a public GitHub issue. **Do not include API keys, customer messages, personal information, or other confidential data.** A submission is an expression of interest, not a confirmed pilot place.
+  - type: input
+    id: company
+    attributes:
+      label: Company or product
+      description: A public name or website is enough.
+      placeholder: Example SaaS
+    validations:
+      required: true
+  - type: dropdown
+    id: team-size
+    attributes:
+      label: Company size
+      options:
+        - 1–9 employees
+        - 10–49 employees
+        - 50–100 employees
+        - 101+ employees
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Support workflow challenge
+      description: Describe the workflow at a high level. Do not paste real customer content.
+      placeholder: We want to reduce time spent triaging high-context support questions...
+    validations:
+      required: true
+  - type: dropdown
+    id: volume
+    attributes:
+      label: Approximate monthly support volume
+      options:
+        - Under 100 conversations
+        - 100–500 conversations
+        - 501–2,000 conversations
+        - More than 2,000 conversations
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Acknowledgement
+      options:
+        - label: I understand this is an early product prototype and I have not shared confidential or customer data.
+          required: true

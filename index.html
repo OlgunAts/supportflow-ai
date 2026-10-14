@@ -22,10 +22,11 @@
       </a>
       <div class="nav-links">
         <a href="#product">Product</a>
+        <a href="#pilot">Pilot</a>
         <a href="#workflow">Workflow</a>
         <a href="#security">Security</a>
       </div>
-      <a class="button button-small button-ghost" href="#demo">Explore demo</a>
+      <a class="button button-small button-ghost" href="#pilot">Join the pilot</a>
     </nav>
   </header>
 
@@ -92,6 +93,15 @@
       <div class="container logo-row">
         <span>Built for the tools support teams use</span>
         <div><b>◈</b> Helpdesk</div><div><b>⌁</b> Chat</div><div><b>◇</b> Knowledge</div><div><b>⬡</b> CRM</div>
+      </div>
+    </section>
+
+    <section class="focus-strip" aria-label="Initial customer focus">
+      <div class="container focus-grid">
+        <div><span class="focus-label">Initial customer profile</span><strong>B2B SaaS support teams</strong></div>
+        <div><span class="focus-label">Team size</span><strong>10–100 employees</strong></div>
+        <div><span class="focus-label">Core workflow</span><strong>High-context support queues</strong></div>
+        <div><span class="focus-label">Current stage</span><strong>Prototype → design partners</strong></div>
       </div>
     </section>
 
@@ -209,6 +219,42 @@
       </div>
     </section>
 
+    <section class="section claude-plan" id="claude-plan">
+      <div class="container claude-grid">
+        <div class="claude-copy reveal">
+          <span class="kicker">Planned Claude integration</span>
+          <h2>A secure model layer—not an API key in the browser.</h2>
+          <p>The next product milestone is a server-side Claude workflow for classification, evidence retrieval, and reply drafting. The public demo intentionally makes no model calls; production credentials will stay behind a controlled API gateway.</p>
+          <div class="stage-badge"><span></span><strong>Current status:</strong> architecture defined, integration not yet live</div>
+        </div>
+        <div class="integration-map reveal delay-one" aria-label="Planned Claude integration architecture">
+          <div class="map-node source-node"><small>01 · INPUT</small><strong>Permissioned support context</strong><span>Ticket · customer · knowledge</span></div>
+          <div class="map-connector"><span>Sanitized request</span><b>→</b></div>
+          <div class="map-node model-node"><small>02 · SERVER SIDE</small><strong>Claude reasoning layer</strong><span>Classify · retrieve · draft</span><em>Planned</em></div>
+          <div class="map-connector"><span>Evidence + draft</span><b>→</b></div>
+          <div class="map-node review-node"><small>03 · CONTROL</small><strong>Human review gate</strong><span>Edit · approve · audit</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section pilot" id="pilot">
+      <div class="container">
+        <div class="pilot-heading reveal">
+          <div><span class="kicker">90-day validation plan</span><h2>From prototype to a measurable pilot.</h2></div>
+          <p>These are operating targets—not current traction. Progress will be reported transparently as the pilot develops.</p>
+        </div>
+        <div class="milestone-grid">
+          <article class="milestone-card reveal"><span class="milestone-number">01</span><small>Days 1–30</small><h3>Recruit design partners</h3><p>Interview support leads and onboard up to 3 B2B SaaS teams with clear data boundaries.</p><ul><li>Problem interviews</li><li>Workflow mapping</li><li>Evaluation baseline</li></ul></article>
+          <article class="milestone-card reveal delay-one"><span class="milestone-number">02</span><small>Days 31–60</small><h3>Run assisted workflows</h3><p>Test server-side Claude-assisted triage and drafting with mandatory human review.</p><ul><li>Secure API gateway</li><li>Grounded responses</li><li>Agent feedback loop</li></ul></article>
+          <article class="milestone-card reveal delay-two"><span class="milestone-number">03</span><small>Days 61–90</small><h3>Measure usefulness</h3><p>Evaluate quality and operational value before expanding automation or access.</p><ul><li>Target: 1,000 reviewed tickets</li><li>Quality scoring</li><li>Pilot case study</li></ul></article>
+        </div>
+        <div class="pilot-cta reveal">
+          <div><span class="pilot-dot"></span><div><strong>Design partner applications are open</strong><p>For support leaders willing to shape an early product. No confidential or customer data is required to apply.</p></div></div>
+          <a class="button button-primary" href="https://github.com/OlgunAts/supportflow-ai/issues/new?template=beta-request.yml" target="_blank" rel="noopener noreferrer">Request pilot access <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
     <section class="section security" id="security">
       <div class="container security-wrap reveal">
         <div><span class="kicker">Responsible by design</span><h2>Built around trust, review, and control.</h2><p>This public prototype contains no secrets, customer data, tracking, or live model calls. A production version would use a secure server-side integration, scoped access, audit logs, and configurable retention.</p></div>
@@ -218,14 +264,14 @@
 
     <section class="cta">
       <div class="container cta-card reveal">
-        <div><span class="kicker">Early product concept</span><h2>Help support teams stay human as they scale.</h2><p>SupportFlow AI is currently a functional front-end prototype exploring safer, calmer support operations.</p></div>
-        <a class="button button-light" href="#demo">Explore the demo <span>→</span></a>
+        <div><span class="kicker">Founder-led, open prototype</span><h2>Help support teams stay human as they scale.</h2><p>SupportFlow AI is moving from a functional product concept toward its first design-partner pilot. Follow the build publicly or help shape the next milestone.</p><div class="cta-links"><a href="https://github.com/OlgunAts/supportflow-ai" target="_blank" rel="noopener noreferrer">View public repository ↗</a><a href="#claude-plan">Read the integration plan ↓</a></div></div>
+        <a class="button button-light" href="https://github.com/OlgunAts/supportflow-ai/issues/new?template=beta-request.yml" target="_blank" rel="noopener noreferrer">Join the pilot <span>→</span></a>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container footer-row"><a class="brand" href="#top"><span class="brand-mark"><span></span><span></span><span></span></span><span>SupportFlow <em>AI</em></span></a><p>Product concept · No live AI or customer data</p><span>© <span id="year"></span> SupportFlow AI</span></div>
+    <div class="container footer-row"><a class="brand" href="#top"><span class="brand-mark"><span></span><span></span><span></span></span><span>SupportFlow <em>AI</em></span></a><p>Public prototype · Pilot applications open · No live AI or customer data</p><span>© <span id="year"></span> SupportFlow AI</span></div>
   </footer>
   <script src="script.js"></script>
 </body>

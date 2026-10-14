@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security and privacy questions
+    url: https://github.com/OlgunAts/supportflow-ai/security
+    about: Review repository security information before sharing anything sensitive.
